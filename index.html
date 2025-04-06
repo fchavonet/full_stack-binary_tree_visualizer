@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Binary Tree Visualizer</title>
+
+    <!-- Script -->
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Binary Tree Visualizer</h1>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <!-- Tree generation -->
+        <div>
+            <p>Enter your data:</p>
+
+            <div>
+                <input id="data-input" type="text" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O">
+                <button onclick="generateTree()">Generate Tree</button>
+            </div>
+
+            <p></p>
+        </div>
+
+        <!-- Tree traversal -->
+        <div>
+            <button class="traversal-btn" onclick="startTraversal('preorder')">Preorder</button>
+            <button class="traversal-btn" onclick="startTraversal('inorder')">Inorder</button>
+            <button class="traversal-btn" onclick="startTraversal('postorder')">Postorder</button>
+            <button class="traversal-btn" onclick="startTraversal('levelorder')">Level-order</button>
+        </div>
+
+        <!-- Tree canvas -->
+        <div>
+            <canvas id="tree-canvas" height="400px"></canvas>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 - Fabien Chavonet.</p>
+    </footer>
+</body>
+
+</html>
