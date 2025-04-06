@@ -9,44 +9,49 @@
 
     <!-- Script -->
     <script src="./script.js" defer></script>
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col justify-center bg-gray-50">
     <!-- Header -->
-    <header>
-        <h1>Binary Tree Visualizer</h1>
+    <header class="mb-auto p-5 text-center text-white bg-blue-500">
+        <h1 class="text-3xl font-bold">Binary Tree Visualizer</h1>
     </header>
 
     <!-- Main -->
-    <main>
+    <main class="container mx-auto p-5 flex flex-col">
         <!-- Tree generation -->
-        <div>
-            <p>Enter your data:</p>
+        <div class="mb-5 p-5 rounded shadow bg-white">
+            <p class="mb-2 text-sm">Enter your data:</p>
 
-            <div>
-                <input id="data-input" type="text" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O">
-                <button onclick="generateTree()">Generate Tree</button>
+            <div class="flex flex-row">
+                <input id="data-input" class="p-2 flex-grow border border-gray-300 rounded" type="text" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O">
+                <button class="ml-5 px-4 py-2 text-white rounded bg-blue-500 hover:bg-blue-600 transition" onclick="generateTree()">Generate Tree</button>
             </div>
 
-            <p></p>
+            <p class="text-sm text-gray-300">
+                (Comma separated, only the first 15 items will be used, and each node is limited to 2 characters)
+            </p>
         </div>
 
         <!-- Tree traversal -->
-        <div>
-            <button class="traversal-btn" onclick="startTraversal('preorder')">Preorder</button>
-            <button class="traversal-btn" onclick="startTraversal('inorder')">Inorder</button>
-            <button class="traversal-btn" onclick="startTraversal('postorder')">Postorder</button>
-            <button class="traversal-btn" onclick="startTraversal('levelorder')">Level-order</button>
+        <div class="mb-5 flex justify-center space-x-5">
+            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('preorder')">Preorder</button>
+            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('inorder')">Inorder</button>
+            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('postorder')">Postorder</button>
+            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('levelorder')">Level-order</button>
         </div>
 
         <!-- Tree canvas -->
-        <div>
-            <canvas id="tree-canvas" height="400px"></canvas>
+        <div class="rounded shadow bg-white">
+            <canvas id="tree-canvas" class="mx-auto" height="400px" id="tree-canvas" height="400px"></canvas>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="mt-auto p-2 text-center text-white bg-gray-800">
         <p>© 2025 - Fabien Chavonet.</p>
     </footer>
 </body>
