@@ -1,6 +1,6 @@
 <img height="50px" align="right" src="https://raw.githubusercontent.com/fchavonet/fchavonet/main/assets/images/logo-web.png" alt="Web logo">
 
-# Binary tree visualizer
+# Binary Tree Visualizer
 
 ## 🔖 Table of contents
 
@@ -86,7 +86,7 @@ git clone https://github.com/fchavonet/web-binary_tree_visualizer.git
 
 4. Use the traversal buttons (Preorder, Inorder, Postorder, Level-order) to see the tree traversal animations.
 
-You can also test the game online by clicking [here](https://fchavonet.github.io/web-binary_tree_visualizer/).
+You can also test the web application online by clicking [here](https://fchavonet.github.io/web-binary_tree_visualizer/).
 
 <p align="center">
     <img src="./assets/images/screenshots.webp">
