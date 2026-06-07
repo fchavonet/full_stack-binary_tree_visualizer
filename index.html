@@ -7,61 +7,140 @@
 
     <title>Binary Tree Visualizer</title>
 
-    <!-- Custom disabled button style -->
-    <style>
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-    </style>
+    <!-- TAILWIND CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- Script -->
+    <!-- SCRIPT -->
     <script src="./script.js" defer></script>
-
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="min-h-screen flex flex-col justify-center bg-gray-50">
-    <!-- Header -->
-    <header class="mb-auto p-5 text-center text-white bg-blue-500">
-        <h1 class="text-3xl font-bold">Binary Tree Visualizer</h1>
-    </header>
-
-    <!-- Main -->
-    <main class="container mx-auto p-5 flex flex-col">
-        <!-- Tree generation -->
-        <div class="mb-5 p-5 rounded shadow bg-white">
-            <p class="mb-2 text-sm">Enter your data:</p>
-
-            <div class="flex flex-row">
-                <input id="data-input" class="p-2 flex-grow border border-gray-300 rounded" type="text" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O">
-                <button class="ml-5 px-4 py-2 text-white rounded bg-blue-500 hover:bg-blue-600 transition" onclick="generateTree()">Generate Tree</button>
+<body class="min-h-screen flex flex-col text-slate-900 antialiased bg-slate-50">
+    <!-- HEADER -->
+    <header class="p-4 border-b border-slate-300 bg-white">
+        <div class="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+            <div class="flex flex-col justify-center items-start">
+                <h1 class="text-xl font-bold">Binary Tree Visualizer</h1>
+                <p class="text-sm text-slate-500"> Understand binary tree traversal through interactive visualization.</p>
             </div>
 
-            <p class="text-sm text-gray-300">
-                (Comma separated, only the first 15 items will be used, and each node is limited to 2 characters)
-            </p>
+            <button id="reset-button" class="w-full lg:w-auto min-h-10 px-4 inline-flex justify-center items-center text-sm font-bold text-white rounded-lg bg-rose-600 hover:bg-rose-500 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button">
+                Reset
+            </button>
         </div>
+    </header>
 
-        <!-- Tree traversal -->
-        <div class="mb-5 flex justify-center space-x-5">
-            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('preorder')">Preorder</button>
-            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('inorder')">Inorder</button>
-            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('postorder')">Postorder</button>
-            <button class="traversal-btn px-4 py-2 text-white rounded bg-green-500 hover:bg-green-600 transition" onclick="startTraversal('levelorder')">Level-order</button>
-        </div>
+    <!-- MAIN -->
+    <main class="min-h-0 flex flex-1 flex-col gap-2">
+        <!-- VALUE SECTION -->
+        <section class="grid gap-2 border-b border-slate-300 bg-slate-100 p-4 lg:grid-cols-[1fr_auto] lg:items-center">
+            <label class="flex flex-row justify-center items-center gap-2" for="value-input">
+                <span class="text-sm font-bold text-slate-500">Values</span>
+                <input id="value-input" class="w-full min-h-10 px-2 text-sm rounded-lg border border-slate-300 outline-none bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 transition" type="text" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O" autocomplete="off">
+            </label>
 
-        <!-- Tree canvas -->
-        <div class="rounded shadow bg-white">
-            <canvas id="tree-canvas" class="mx-auto" height="400px" id="tree-canvas" height="400px"></canvas>
+            <div class="flex flex-row lg:flex-col lg:flex-row gap-2">
+                <button id="generate-button" class="w-full lg:w-auto min-h-10 px-4 inline-flex justify-center items-center text-sm font-bold text-white rounded-lg bg-blue-600 hover:bg-blue-500 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button">
+                    Generate
+                </button>
+
+                <button id="random-button" class="w-full lg:w-auto min-h-10 px-4 inline-flex justify-center items-center text-sm font-bold text-white rounded-lg bg-orange-600 hover:bg-orange-500 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button">
+                    Random
+                </button>
+            </div>
+        </section>
+
+        <div class="min-h-0 p-2 flex flex-1 flex-col lg:flex-row gap-4">
+            <!-- LEFT ASIDE -->
+            <aside class="lg:w-60 min-h-0 p-4 rounded-xl border border-slate-300 bg-white">
+                <section>
+                    <h2 class="mb-4 text-sm font-extrabold uppercase">Traversal order</h2>
+
+                    <div class="flex flex-col justify-center items-center gap-2">
+                        <button class="traversal-button w-full min-h-10 px-4 inline-flex justify-center items-center text-sm font-bold rounded-lg border border-slate-300 bg-white hover:bg-slate-100 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button" data-traversal="preorder">
+                            Pre-order
+                        </button>
+
+                        <button class="traversal-button w-full min-h-10 px-4 inline-flex justify-center items-center text-sm font-bold rounded-lg border border-slate-300 bg-white hover:bg-slate-100 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button" data-traversal="inorder">
+                            In-order
+                        </button>
+
+                        <button class="traversal-button w-full min-h-10 px-4 inline-flex justify-center items-center text-sm font-bold rounded-lg border border-slate-300 bg-white hover:bg-slate-100 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button" data-traversal="postorder">
+                            Post-order
+                        </button>
+
+                        <button class="traversal-button w-full min-h-10 px-4 inline-flex justify-center items-center text-sm font-bold rounded-lg border border-slate-300 bg-white hover:bg-slate-100 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button" data-traversal="levelorder">
+                            Level-order
+                        </button>
+                    </div>
+                </section>
+
+                <section class="mt-6 pt-5 border-t border-slate-300">
+                    <h2 class="mb-4 text-sm font-extrabold uppercase">Animation</h2>
+
+                    <label class="flex flex-col justify-center items-center gap-2" for="speed-range">
+                        <div class="w-full flex flex-row justify-between items-center">
+                            <span class="text-sm font-bold text-slate-500">Speed:</span>
+                            <span id="speed-value" class="text-xs text-slate-500">800 ms</span>
+                        </div>
+                        <input id="speed-range" class="w-full accent-blue-600" min="100" max="1500" step="50" value="800" type="range">
+                    </label>
+
+                    <button id="pause-button" class="w-full min-h-10 mt-4 px-4 inline-flex justify-center items-center text-sm font-bold rounded-lg border border-slate-300 bg-white hover:bg-slate-100 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="button" data-traversal="evelorder">
+                        Pause
+                    </button>
+                </section>
+
+                <section class="mt-6 pt-5 border-t border-slate-300">
+                    <h2 class="mb-4 text-sm font-extrabold uppercase">Options</h2>
+
+                    <label class="flex flex-row justify-start items-center gap-2 cursor-pointer" for="indexes-checkbox">
+                        <input id="indexes-checkbox" class="w-4 h-4 accent-blue-600 cursor-pointer" type="checkbox">
+                        <span class="text-sm font-bold text-slate-500">Show indexes</span>
+                    </label>
+                </section>
+            </aside>
+
+            <!-- CANVAS SECTION -->
+            <section class="min-w-0 min-h-[520px] lg:min-h-0 p-4 flex flex-1 flex-col gap-4 rounded-xl border border-slate-300 bg-white">
+                <div>
+                    <h2 class="text-sm font-extrabold uppercase">Tree</h2>
+
+                    <p id="tree-info" class="text-sm text-slate-500">
+                        15 nodes
+                    </p>
+                </div>
+
+                <div class="min-h-0 flex-1 bg-white">
+                    <canvas id="tree-canvas" class="w-full h-full block"></canvas>
+                </div>
+            </section>
+
+            <!-- RIGHT ASIDE -->
+            <aside class="lg:w-80 min-h-0 p-4 flex flex-col rounded-xl border border-slate-300 bg-white">
+                <!-- VISITED OUTPUT -->
+                <section class="flex flex-1 flex-col">
+                    <h2 class="mb-4 text-sm font-extrabold uppercase">Visited order</h2>
+
+                    <div id="visited-output" class="min-h-0 p-2 flex flex-1 flex-wrap content-start gap-2 rounded-lg border border-slate-300 bg-slate-100">
+                        <span class="text-sm text-slate-500">
+                            No node visited yet.
+                        </span>
+                    </div>
+                </section>
+
+                <!-- EXPECTED OUTPUT -->
+                <section class="mt-6 pt-5 flex flex-1 flex-col  border-t border-slate-300">
+                    <h2 class="mb-4 text-sm font-extrabold uppercase">Expected order</h2>
+
+                    <div id="expected-output" class="min-h-0 p-2 flex flex-1 flex-wrap content-start gap-2 rounded-lg border border-slate-300 bg-slate-100">
+                        <span class="text-sm text-slate-500">
+                            No traversal selected.
+                        </span>
+                    </div>
+                </section>
+            </aside>
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="mt-auto p-2 text-center text-white bg-gray-800">
-        <p>© 2025 - Fabien Chavonet.</p>
-    </footer>
 </body>
 
 </html>
