@@ -2,11 +2,9 @@
 
 ## Description
 
-This project is a visual learning tool designed to help students understand binary trees, particularly the different traversal types (preorder, inorder, postorder, and level-order).
+This project is a visual learning tool designed to help students understand binary trees, particularly the different traversal types (pre-order, in-order, post-order, and level-order).
 
 I created this tool to provide an easy-to-use visual representation that illustrates how binary trees are structured and how traversals work.
-
-Although not perfect, it effectively serves its educational purpose.
 
 ## Objectives
 
@@ -55,7 +53,7 @@ git clone https://github.com/fchavonet/full_stack-binary_tree_visualizer.git
 
 3. Click on "Generate Tree" to visualize the binary tree.
 
-4. Use the traversal buttons (Preorder, Inorder, Postorder, Level-order) to see the tree traversal animations.
+4. Use the traversal buttons (Pre-order, In-order, Post-order, Level-order) to see the tree traversal animations.
 
 You can also test the project online by clicking [here](https://fchavonet.github.io/full_stack-binary_tree_visualizer/).
 
@@ -65,8 +63,8 @@ You can also test the project online by clicking [here](https://fchavonet.github
 
 ## What's Next?
 
-- Add responsive design support.
-- Improve the overall user interface and visuals.
+- Fix remaining minor bugs.
+- Add more customization options.
 
 ## Thanks
 
